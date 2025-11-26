@@ -2,17 +2,17 @@
 
 import { getAccessGuardContext } from "@/utils/accessguard"
 import { Bell, User } from "lucide-react"
-import { usePathname } from "next/dist/client/components/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 
 interface NavbarProps {
   title: string
 }
 
-export function Header({ title }: NavbarProps) {
-  const context = getAccessGuardContext()
-   const pathname = usePathname();
-
+export function Header({ }: NavbarProps) {
+    const context = getAccessGuardContext()
+  const pathname = usePathname();
+  const router = useRouter();
   const formatPageTitle = () => {
     // Remove leading slash and split the path
     const segments = pathname.split("/").filter((segment) => segment !== "");
@@ -41,7 +41,7 @@ export function Header({ title }: NavbarProps) {
 
         <div className="flex items-center gap-6">
           {/* Notifications */}
-          <button className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+          <button onClick={() => router.push("/notifications")} className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
             <Bell className="w-5 h-5" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
@@ -52,9 +52,9 @@ export function Header({ title }: NavbarProps) {
               <p className="text-sm font-medium text-[#1e1b4b]">{context.user.username}</p>
               <p className="text-xs text-gray-500 capitalize">{context.user.roles[0]}</p>
             </div>
-            <div className="w-10 h-10 bg-[#818cf8] rounded-full flex items-center justify-center">
+            <button onClick={() => router.push("/profile")} className="w-10 h-10 bg-[#818cf8] rounded-full flex items-center justify-center">
               <User className="w-5 h-5 text-white" />
-            </div>
+            </button>
           </div>
         </div>
       </div>

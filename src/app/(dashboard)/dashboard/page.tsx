@@ -1,6 +1,5 @@
 "use client"
 
-
 import { Card } from "@/components/ui/card"
 import { AlertCircle, CheckCircle2, Clock } from "lucide-react"
 
@@ -33,11 +32,11 @@ export default function DashboardPage() {
   ]
 
   return (
-      <div className=" min-h-screen">
+      <div className=" min-h-screen space-y-8">
         {/* Welcome Section */}
         <div className="bg-linear-to-r from-[#1e1b4b] to-[#3730a3] rounded-xl p-8 text-white">
           <h2 className="text-3xl font-bold mb-2">Welcome back, John!</h2>
-          <p className="text-[#c7d2fe]">Here's your banking portal overview. Stay secure with AccessGuard.</p>
+          <p className="text-[#c7d2fe]">Here&apos;s your banking portal overview. Stay secure with AccessGuard.</p>
         </div>
 
         {/* Stats Grid */}
