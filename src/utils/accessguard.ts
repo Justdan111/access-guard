@@ -14,7 +14,7 @@ export interface AccessGuardContext {
 // Mock AccessGuard headers - simulating what would come from the proxy
 const MOCK_HEADERS = {
   "x-accessguard-user": {
-    username: "John Doe",
+    username: "David King",
     roles: ["employee"],
   },
   "x-accessguard-decision": {
@@ -25,8 +25,7 @@ const MOCK_HEADERS = {
 }
 
 export function getAccessGuardContext(): AccessGuardContext {
-  // In a real scenario, these would come from request headers
-  // For now, we're simulating the behavior
+  //  we're simulating the behavior
   const readonlySession = MOCK_HEADERS["x-readonly-session"] === "true"
 
   return {
@@ -38,6 +37,6 @@ export function getAccessGuardContext(): AccessGuardContext {
 
 export function isProtected(): boolean {
   // Check if the AccessGuard headers are present
-  // In a real app, this would check actual request headers
+
   return true
 }
