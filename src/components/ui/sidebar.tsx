@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { LayoutDashboard, User, Bell, Lock, Settings, LogOut, ChevronsLeft, ChevronsRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,7 @@ const navigation = [
   { name: "Announcements", href: "/announcements", icon: Bell },
   { name: "Confidential Files", href: "/confidential", icon: Lock },
    { name: "Profile", href: "/profile", icon: User },
-  { name: "Admin", href: "/admin", icon: Settings },
+//   { name: "Admin", href: "/admin", icon: Settings },
 ]
 
 interface SidebarProps {
@@ -20,6 +20,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ onCollapseChange }: SidebarProps) {
+    const router = useRouter();
   const pathname = usePathname()
   const [isCollapsed, setIsCollapsed] = useState(false)
 
@@ -27,12 +28,12 @@ export function Sidebar({ onCollapseChange }: SidebarProps) {
     const newCollapsedState = !isCollapsed
     setIsCollapsed(newCollapsedState)
     
-    // Notify parent component through prop callback
+   
     if (onCollapseChange) {
       onCollapseChange(newCollapsedState)
     }
     
-    // Also dispatch a custom event for components that can't receive props directly
+   
     const event = new CustomEvent('sidebarStateChange', { 
       detail: { isCollapsed: newCollapsedState } 
     })
@@ -45,9 +46,9 @@ export function Sidebar({ onCollapseChange }: SidebarProps) {
       isCollapsed ? "w-20" : "w-64"
     )}>
       {/* Logo and Collapse Button */}
-      <div className={cn("px-6 mb-12 flex items-start", isCollapsed ? "justify-center px-2" : "justify-between")}>
+      <div className={cn("px-6 mb-12 flex items-start", isCollapsed ? "justify-center px-2" : "justify-between")} >
         <div className={cn(isCollapsed && "hidden")}>
-          <div className="text-2xl font-bold text-white">
+          <div className="text-2xl font-bold text-white" >
             <span className="text-[#818cf8]">Access</span> Guard
           </div>
           <p className="text-xs text-[#a5b4fc] mt-1">Secure Portal</p>

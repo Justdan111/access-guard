@@ -14,16 +14,12 @@ export function Header({ }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const formatPageTitle = () => {
-    // Remove leading slash and split the path
     const segments = pathname.split("/").filter((segment) => segment !== "");
 
-    // Handle different scenarios
     if (segments.length === 0) return "Dashboard";
 
-    // Only take the first segment (main route)
     const mainRoute = segments[0];
-
-    // Format the main route (capitalize, replace hyphens)
+   
     return mainRoute
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
