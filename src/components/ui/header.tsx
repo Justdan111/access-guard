@@ -2,6 +2,7 @@
 
 import { getAccessGuardContext } from "@/utils/accessguard"
 import { Bell, User } from "lucide-react"
+import { usePathname } from "next/dist/client/components/navigation"
 
 
 interface NavbarProps {
@@ -10,11 +11,33 @@ interface NavbarProps {
 
 export function Header({ title }: NavbarProps) {
   const context = getAccessGuardContext()
+   const pathname = usePathname();
+
+  const formatPageTitle = () => {
+    // Remove leading slash and split the path
+    const segments = pathname.split("/").filter((segment) => segment !== "");
+
+    // Handle different scenarios
+    if (segments.length === 0) return "Dashboard";
+
+    // Only take the first segment (main route)
+    const mainRoute = segments[0];
+
+    // Format the main route (capitalize, replace hyphens)
+    return mainRoute
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
-    <header className="fixed right-0 top-0 left-64 bg-white border-b border-gray-200 z-40">
+ <header className="sticky top-0 z-40 border-b bg-background">
       <div className="flex items-center justify-between px-8 py-4">
-        <h1 className="text-2xl font-bold text-[#1e1b4b]">{title}</h1>
+        <div className="flex-1">
+          <h1 className="text-lg font-semibold text-foreground">
+            {formatPageTitle()}
+          </h1>
+        </div>
 
         <div className="flex items-center gap-6">
           {/* Notifications */}

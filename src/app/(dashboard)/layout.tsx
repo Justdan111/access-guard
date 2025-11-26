@@ -5,7 +5,6 @@ import { Header } from "@/components/ui/header";
 import { SidebarProvider } from "@/components/ui/sidebar-provider";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-// import { useAuth } from "@/lib/context/AuthContext";
 
 export default function DashboardLayout({
   children,
@@ -37,7 +36,7 @@ export default function DashboardLayout({
   }, []);
 
 
-  console.log("Dashboard Layout - Rendering dashboard");
+
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-background">
